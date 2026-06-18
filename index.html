@@ -600,6 +600,107 @@
       * { transition: none !important; }
       html { scroll-behavior: auto; }
     }
+
+    /* ── WHAT WE DO ── */
+    .three-lines { list-style: none; margin-top: 2rem; max-width: 640px; }
+    .three-lines li {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+    }
+    .three-lines li:first-child { border-top: 1px solid var(--border); }
+    .three-lines-arrow {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      padding-top: 0.25rem;
+    }
+
+    /* ── FOUNDING + LOGOS ── */
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .logo-bar-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0;
+      flex-basis: 100%;
+    }
+    .logo-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.625rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+
+    /* ── INLINE OFFER ── */
+    .offer-inline {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 1.75rem 2rem;
+      margin-top: 2rem;
+      max-width: 640px;
+    }
+    .offer-inline p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .offer-inline strong { color: var(--white); }
+
+    /* ── FINAL CTA (rebuilt) ── */
+    .cta-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 5rem 0;
+    }
+    .cta-headline {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+    .cta-guarantee {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 860px) {
+      .cta-section-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .logo-bar { gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -609,6 +710,158 @@
     <a href="/" class="nav-logo">ODYSSEY<span>.</span></a>
     <a href="#book" class="btn">Book a 20-min call</a>
   </nav>
+
+
+  <!-- ── HERO ── -->
+  <div class="hero" style="text-align:center">
+    <div class="container">
+      <p class="eyebrow" style="justify-content:center">// NZ + AU solar installers</p>
+      <h1 class="hero-headline" style="margin-left:auto;margin-right:auto">We booked 5 solar assessments<br>in 3 days. <em>$9.85 each.</em></h1>
+      <p class="hero-sub" style="margin-left:auto;margin-right:auto;text-align:center">We run your Meta ads and book in-home assessments into your calendar. You turn up to quote.</p>
+
+      <div class="receipt" style="display:inline-block;text-align:left">
+        <p class="receipt-header">Live account — verified Meta Ads Manager + GHL pipeline</p>
+        <div class="receipt-row">
+          <span class="receipt-k">cost / booked site visit</span>
+          <span class="receipt-v gold">NZ$9.85</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">lead → booked rate</span>
+          <span class="receipt-v">1 in 2</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">assessments booked</span>
+          <span class="receipt-v">5 in 3 days</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">total ad spend</span>
+          <span class="receipt-v">NZ$49.23</span>
+        </div>
+        <p class="receipt-footer">SOURCE · Meta + GHL · NZ solar installer · 2026-06-18</p>
+      </div>
+
+      <br>
+      <a href="#book" class="btn btn-lg">Book your 20-min call</a>
+      <span class="hero-cta-note">3 founding spots. Nothing to sign on the call.</span>
+    </div>
+  </div>
+
+
+  <!-- ── PROOF ── -->
+  <section>
+    <div class="container section-pad" style="text-align:center">
+      <p class="eyebrow">// The numbers</p>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:600px">Real numbers. Not a promise.</h2>
+      <p class="section-body" style="margin-left:auto;margin-right:auto;text-align:center">Live account. Actual figures from Meta and GHL.</p>
+      <div class="proof-block" style="text-align:left;margin-top:2rem">
+        <p class="proof-block-label">// Live NZ account · Meta Ads Manager + GHL · 2026-06-18</p>
+        <div class="proof-metrics">
+          <div class="proof-metric">
+            <p class="proof-metric-num">$9.85</p>
+            <p class="proof-metric-label">Cost per booked site visit (NZD)</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">1 in 2</p>
+            <p class="proof-metric-label">Lead → booked rate</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">5</p>
+            <p class="proof-metric-label">Assessments booked in 3 days</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">$49.23</p>
+            <p class="proof-metric-label">Total ad spend (NZD)</p>
+          </div>
+        </div>
+        <div class="screenshot-slot">
+          <!-- Replace with Meta + GHL dashboard screenshot before launch -->
+          <p>[ Meta Ads Manager + GHL dashboard screenshot ]</p>
+          <p>Replace before launch</p>
+        </div>
+        <p class="proof-caveat">Honest note: small sample (n=10, 3 days). Cost will rise as spend scales. Even at 5× worse, $1,500/mo in ad spend still delivers ~30 booked assessments.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── WHAT WE DO ── -->
+  <section>
+    <div class="container section-pad" style="text-align:center">
+      <p class="eyebrow">// What we do</p>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:560px">We handle everything. You just turn up.</h2>
+      <ul class="three-lines" style="margin-left:auto;margin-right:auto;text-align:left">
+        <li>
+          <span class="three-lines-arrow">→</span>
+          We write the script, build the ads, and run the campaign — you don't touch it.
+        </li>
+        <li>
+          <span class="three-lines-arrow">→</span>
+          Leads qualify themselves and book straight into your calendar.
+        </li>
+        <li>
+          <span class="three-lines-arrow">→</span>
+          You turn up to the assessment. That's your only job.
+        </li>
+      </ul>
+      <div style="margin-top:2.5rem">
+        <a href="#book" class="btn btn-lg">Book your 20-min call</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOUNDING STORY ── -->
+  <section>
+    <div class="container section-pad" style="text-align:center">
+      <p class="eyebrow">// Why now</p>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:620px">We're going all-in on solar.</h2>
+      <p class="section-body" style="margin-left:auto;margin-right:auto;text-align:center;max-width:540px">We ran our system for a solar installer. 5 assessments in 3 days at $9.85 each. We want to do that for 3 more. Founding rate locked for early partners — first 3 only.</p>
+      <div class="offer-inline" style="margin-left:auto;margin-right:auto;text-align:left">
+        <p><strong>3 founding spots.</strong> Live in 3 days. <strong>10 booked assessments in 30 days</strong> or month 2 is free. One condition: respond to leads within 24 hours.</p>
+      </div>
+      <div class="logo-bar" style="justify-content:center;margin-top:2.5rem">
+        <p class="logo-bar-label" style="text-align:center">// Campaigns we've built</p>
+        <!-- Replace logo-chips with actual <img> logo files when available -->
+        <div class="logo-chip">Jim's Mowing</div>
+        <div class="logo-chip">Swift Solar</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FINAL CTA ── -->
+  <section id="book" class="cta-section">
+    <div class="container">
+      <div class="cta-section-inner" style="text-align:left">
+        <div>
+          <h2 class="cta-headline">3 spots. Book the call.</h2>
+          <p class="cta-sub">20 minutes. We'll look at your setup and tell you straight if it's a fit. Nothing to sign on the call.</p>
+          <p class="cta-guarantee">
+            Live in 3 days · 10 booked assessments in 30 days or month 2 free<br>
+            $2,000/mo founding rate · PIF $5,000 · 90-day engagement<br>
+            You pay Meta ad spend directly
+          </p>
+        </div>
+        <div class="calendar-slot">
+          <!-- Wire in Calendly or GHL booking widget before launch -->
+          <p>[ Booking calendar ]</p>
+          <p>Wire in before launch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Odyssey Projects · odysseyprojects.io</p>
+      <p>© 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
 
 
   <!-- ── HERO ── -->
