@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* â”€â”€ TOKENS â”€â”€ */
+    /* â"€â"€ TOKENS â"€â"€ */
     :root {
       --bg:        #0E1A13;
       --surface:   #162A1D;
@@ -34,7 +34,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* â”€â”€ NAV â”€â”€ */
+    /* â"€â"€ NAV â"€â"€ */
     .nav {
       position: sticky;
       top: 0;
@@ -76,7 +76,7 @@
     }
     .btn-block { display: block; text-align: center; width: 100%; }
 
-    /* â”€â”€ LAYOUT â”€â”€ */
+    /* â"€â"€ LAYOUT â"€â"€ */
     .container {
       max-width: 1080px;
       margin: 0 auto;
@@ -106,7 +106,7 @@
       max-width: 580px;
     }
 
-    /* â”€â”€ HERO â”€â”€ */
+    /* â"€â"€ HERO â"€â"€ */
     .hero { padding: 5rem 0 4.5rem; }
     .hero-headline {
       font-size: clamp(2.25rem, 5.5vw, 4rem);
@@ -127,7 +127,7 @@
       margin-bottom: 2.75rem;
     }
 
-    /* â”€â”€ RECEIPT CARD (signature element) â”€â”€ */
+    /* â"€â"€ RECEIPT CARD (signature element) â"€â"€ */
     .receipt {
       display: inline-block;
       background: var(--surface);
@@ -184,7 +184,7 @@
       margin-top: 0.625rem;
     }
 
-    /* â”€â”€ PROBLEM â”€â”€ */
+    /* â"€â"€ PROBLEM â"€â"€ */
     .problem-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -216,7 +216,7 @@
       line-height: 1.65;
     }
 
-    /* â”€â”€ MECHANISM â”€â”€ */
+    /* â"€â"€ MECHANISM â"€â"€ */
     .mechanism-cols {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -285,7 +285,7 @@
       line-height: 1.5;
     }
 
-    /* â”€â”€ PROOF â”€â”€ */
+    /* â"€â"€ PROOF â"€â"€ */
     .proof-block {
       margin-top: 2.5rem;
       background: var(--surface);
@@ -348,7 +348,7 @@
       line-height: 1.75;
     }
 
-    /* â”€â”€ OFFER â”€â”€ */
+    /* â"€â"€ OFFER â"€â"€ */
     .offer-layout {
       display: grid;
       grid-template-columns: 1.35fr 1fr;
@@ -453,7 +453,7 @@
       line-height: 1.5;
     }
 
-    /* â”€â”€ WHO IT'S FOR â”€â”€ */
+    /* â"€â"€ WHO IT'S FOR â"€â"€ */
     .fit-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -475,7 +475,7 @@
     .fit-cross { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); flex-shrink: 0; padding-top: 0.15rem; }
     .fit-list li.no { color: var(--muted); }
 
-    /* â”€â”€ FAQ â”€â”€ */
+    /* â"€â"€ FAQ â"€â"€ */
     .faq { max-width: 740px; margin-top: 2rem; }
     details {
       border-bottom: 1px solid var(--border);
@@ -511,7 +511,7 @@
       padding-bottom: 1.375rem;
     }
 
-    /* â”€â”€ FINAL CTA â”€â”€ */
+    /* â"€â"€ FINAL CTA â"€â"€ */
     .final-cta {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -560,7 +560,7 @@
       text-align: center;
     }
 
-    /* â”€â”€ FOOTER â”€â”€ */
+    /* â"€â"€ FOOTER â"€â"€ */
     .footer {
       border-top: 1px solid var(--border);
       padding: 1.5rem 2rem;
@@ -574,7 +574,7 @@
     }
     .footer p { font-size: 0.8125rem; color: var(--muted); }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* â"€â"€ RESPONSIVE â"€â"€ */
     @media (max-width: 860px) {
       .mechanism-cols,
       .offer-layout,
@@ -601,7 +601,7 @@
       html { scroll-behavior: auto; }
     }
 
-    /* â”€â”€ WHAT WE DO â”€â”€ */
+    /* â"€â"€ WHAT WE DO â"€â"€ */
     .three-lines { list-style: none; margin-top: 2rem; max-width: 640px; }
     .three-lines li {
       display: flex;
@@ -621,7 +621,7 @@
       padding-top: 0.25rem;
     }
 
-    /* â”€â”€ FOUNDING + LOGOS â”€â”€ */
+    /* â"€â"€ FOUNDING + LOGOS â"€â"€ */
     .logo-bar {
       display: flex;
       align-items: center;
@@ -648,7 +648,7 @@
       color: var(--white);
     }
 
-    /* â”€â”€ INLINE OFFER â”€â”€ */
+    /* â"€â"€ INLINE OFFER â"€â"€ */
     .offer-inline {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -664,7 +664,7 @@
     }
     .offer-inline strong { color: var(--white); }
 
-    /* â”€â”€ FINAL CTA (rebuilt) â”€â”€ */
+    /* â"€â"€ FINAL CTA (rebuilt) â"€â"€ */
     .cta-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -767,7 +767,7 @@
   </nav>
 
 
-  <!-- â”€â”€ HERO â”€â”€ -->
+  <!-- â"€â"€ HERO â"€â"€ -->
   <div class="hero" style="text-align:center">
     <div class="container">
       <p class="eyebrow" style="justify-content:center">// NZ + AU solar installers</p>
@@ -802,7 +802,7 @@
   </div>
 
 
-  <!-- â”€â”€ PROOF â”€â”€ -->
+  <!-- â"€â"€ PROOF â"€â"€ -->
   <section>
     <div class="container section-pad" style="text-align:center">
       <p class="eyebrow">// The numbers</p>
@@ -842,88 +842,88 @@
   </section>
 
 
-  <!-- â”€â”€ WHAT YOU GET â”€â”€ -->
+  <!-- â"€â"€ WHAT YOU GET â"€â"€ -->
   <section>
-    <div class=”container section-pad” style=”text-align:center”>
-      <p class=”eyebrow”>// What you get</p>
-      <h2 class=”section-headline” style=”margin-left:auto;margin-right:auto;max-width:560px”>Booked assessments.<br><span style=”opacity:0.55”>No ad management. A guarantee.</span></h2>
-      <div class=”outcomes-grid”>
-        <div class=”outcome-item”>
-          <p class=”outcome-num”>01</p>
-          <p class=”outcome-title”>Booked assessments, not raw leads</p>
-          <p class=”outcome-body”>64% of our leads become booked site visits. Trust-led creative pre-qualifies the homeowner before they call you. You don't chase anyone &mdash; you show up.</p>
+    <div class="container section-pad" style="text-align:center">
+      <p class="eyebrow">// What you get</p>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:560px">Booked assessments.<br><span style="opacity:0.55">No ad management. A guarantee.</span></h2>
+      <div class="outcomes-grid">
+        <div class="outcome-item">
+          <p class="outcome-num">01</p>
+          <p class="outcome-title">Booked assessments, not raw leads</p>
+          <p class="outcome-body">64% of our leads become booked site visits. Trust-led creative pre-qualifies the homeowner before they call you. You don't chase anyone &mdash; you show up.</p>
         </div>
-        <div class=”outcome-item”>
-          <p class=”outcome-num”>02</p>
-          <p class=”outcome-title”>A creative engine that compounds</p>
-          <p class=”outcome-body”>Multiple video scripts and static ads running simultaneously. We test, cut what loses, scale what wins. Assessments get cheaper as the campaign matures.</p>
+        <div class="outcome-item">
+          <p class="outcome-num">02</p>
+          <p class="outcome-title">A creative engine that compounds</p>
+          <p class="outcome-body">Multiple video scripts and static ads running simultaneously. We test, cut what loses, scale what wins. Assessments get cheaper as the campaign matures.</p>
         </div>
-        <div class=”outcome-item”>
-          <p class=”outcome-num”>03</p>
-          <p class=”outcome-title”>Live in 3 days. 10 booked in 30 &mdash; or month 2 is free</p>
-          <p class=”outcome-body”>Campaign built and live within 3 days of signing. No long onboarding. The guarantee is baked in from day one.</p>
+        <div class="outcome-item">
+          <p class="outcome-num">03</p>
+          <p class="outcome-title">Live in 3 days. 10 booked in 30 &mdash; or month 2 is free</p>
+          <p class="outcome-body">Campaign built and live within 3 days of signing. No long onboarding. The guarantee is baked in from day one.</p>
         </div>
       </div>
-      <div style=”margin-top:2.5rem”>
-        <a href=”#book” class=”btn btn-lg”>See if you qualify</a>
+      <div style="margin-top:2.5rem">
+        <a href="#book" class="btn btn-lg">See if you qualify</a>
       </div>
     </div>
   </section>
 
 
-  <!-- â”€â”€ FOUNDING COHORT â”€â”€ -->
+  <!-- â"€â"€ FOUNDING COHORT â"€â"€ -->
   <section>
-    <div class=”container section-pad” style=”text-align:center”>
-      <p class=”eyebrow”>// The founding cohort</p>
-      <h2 class=”section-headline” style=”margin-left:auto;margin-right:auto;max-width:580px”>3 spots. Founding rate.<br><span style=”opacity:0.55”>Case study rights.</span></h2>
-      <p class=”section-body” style=”margin-left:auto;margin-right:auto;text-align:center;max-width:540px”>We proved the system on a live solar account &mdash; $9.23 per booked assessment, 64% of leads converting. We're taking 3 founding partners at a held-down rate in exchange for case study and testimonial rights. After that, the rate goes up.</p>
-      <div class=”offer-inline” style=”margin-left:auto;margin-right:auto;text-align:left”>
+    <div class="container section-pad" style="text-align:center">
+      <p class="eyebrow">// The founding cohort</p>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:580px">3 spots. Founding rate.<br><span style="opacity:0.55">Case study rights.</span></h2>
+      <p class="section-body" style="margin-left:auto;margin-right:auto;text-align:center;max-width:540px">We proved the system on a live solar account &mdash; $9.23 per booked assessment, 64% of leads converting. We're taking 3 founding partners at a held-down rate in exchange for case study and testimonial rights. After that, the rate goes up.</p>
+      <div class="offer-inline" style="margin-left:auto;margin-right:auto;text-align:left">
         <p><strong>3 founding spots.</strong> Live in 3 days. <strong>10 booked assessments in 30 days</strong> or month 2 is free. One condition: respond to every lead within 24 hours.</p>
       </div>
-      <div class=”logo-bar” style=”justify-content:center;margin-top:2.5rem”>
-        <p class=”logo-bar-label” style=”text-align:center”>// Campaigns we've built</p>
-        <img src=”jims-mowing-logo.png” alt=”Jim's Mowing” style=”height:48px;opacity:0.9”>
-        <img src=”swift-solar-logo.png” alt=”Swift Solar” style=”height:40px;opacity:0.85”>
+      <div class="logo-bar" style="justify-content:center;margin-top:2.5rem">
+        <p class="logo-bar-label" style="text-align:center">// Campaigns we've built</p>
+        <img src="jims-mowing-logo.png" alt="Jim's Mowing" style="height:48px;opacity:0.9">
+        <img src="swift-solar-logo.png" alt="Swift Solar" style="height:40px;opacity:0.85">
       </div>
     </div>
   </section>
 
 
-  <!-- â”€â”€ FINAL CTA â”€â”€ -->
-  <section id=”book” class=”cta-section”>
-    <div class=”container”>
-      <div class=”cta-section-inner” style=”text-align:left”>
+  <!-- â"€â"€ FINAL CTA â"€â"€ -->
+  <section id="book" class="cta-section">
+    <div class="container">
+      <div class="cta-section-inner" style="text-align:left">
         <div>
-          <h2 class=”cta-headline”>3 spots.<br>See if you qualify.</h2>
-          <p class=”cta-sub”>We'll review your answers and reach out within 24 hours if it's a fit.</p>
-          <p class=”cta-guarantee”>
+          <h2 class="cta-headline">3 spots.<br>See if you qualify.</h2>
+          <p class="cta-sub">We'll review your answers and reach out within 24 hours if it's a fit.</p>
+          <p class="cta-guarantee">
             Live in 3 days &middot; 10 booked assessments in 30 days or month 2 free<br>
             $2,000/mo founding rate &middot; PIF $5,000 &middot; 90-day &middot; You pay Meta directly
           </p>
         </div>
-        <form class=”lead-form” name=”qualify” method=”POST” action=”#”>
-          <input type=”text” name=”name” placeholder=”Your name” required>
-          <input type=”text” name=”business” placeholder=”Business name” required>
-          <input type=”tel” name=”phone” placeholder=”Phone number” required>
-          <select name=”installs” required>
-            <option value=”” disabled selected>How many installs do you do per month?</option>
-            <option value=”1-3”>1&ndash;3</option>
-            <option value=”4-10”>4&ndash;10</option>
-            <option value=”10+”>10+</option>
+        <form class="lead-form" name="qualify" method="POST" action="#">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="text" name="business" placeholder="Business name" required>
+          <input type="tel" name="phone" placeholder="Phone number" required>
+          <select name="installs" required>
+            <option value="" disabled selected>How many installs do you do per month?</option>
+            <option value="1-3">1&ndash;3</option>
+            <option value="4-10">4&ndash;10</option>
+            <option value="10+">10+</option>
           </select>
-          <select name=”region” required>
-            <option value=”” disabled selected>Where are you based?</option>
-            <option value=”nz”>New Zealand</option>
-            <option value=”au”>Australia</option>
+          <select name="region" required>
+            <option value="" disabled selected>Where are you based?</option>
+            <option value="nz">New Zealand</option>
+            <option value="au">Australia</option>
           </select>
-          <button type=”submit” class=”btn btn-lg” style=”width:100%;margin-top:0.25rem”>See if you qualify &rarr;</button>
+          <button type="submit" class="btn btn-lg" style="width:100%;margin-top:0.25rem">See if you qualify &rarr;</button>
         </form>
       </div>
     </div>
   </section>
 
 
-  <!-- â”€â”€ FOOTER â”€â”€ -->
+  <!-- â"€â"€ FOOTER â"€â"€ -->
   <footer class="footer">
     <div class="footer-inner">
       <p>Odyssey Projects &middot; odysseyprojects.io</p>
