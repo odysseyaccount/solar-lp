@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Assessment Engine — Odyssey Projects</title>
+  <meta name="description" content="We book NZ solar installers in-home assessments — done for you. NZ$9.85 per booked site visit. 3 founding spots.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:        #0E1A13;
+      --surface:   #162A1D;
+      --green:     #1c4b33;
+      --gold:      #D29D19;
+      --white:     #ffffff;
+      --muted:     #8BAE96;
+      --border:    rgba(28,75,51,0.55);
+      --sans:      'Poppins', sans-serif;
+      --mono:      'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: rgba(14,26,19,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.03em;
+      padding: 0.55rem 1.25rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-lg {
+      font-size: 1rem;
+      padding: 0.875rem 2.25rem;
+    }
+    .btn-block { display: block; text-align: center; width: 100%; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section { border-top: 1px solid var(--border); }
+    .section-pad { padding: 5rem 0; }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .section-headline {
+      font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.125rem;
+    }
+    .section-body {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ── HERO ── */
+    .hero { padding: 5rem 0 4.5rem; }
+    .hero-headline {
+      font-size: clamp(2.25rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 1.25rem;
+      max-width: 860px;
+    }
+    .hero-headline em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 2.75rem;
+    }
+
+    /* ── RECEIPT CARD (signature element) ── */
+    .receipt {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.75rem;
+      font-family: var(--mono);
+    }
+    .receipt-header {
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .receipt-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .receipt-row:last-of-type { margin-bottom: 0; }
+    .receipt-k {
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-width: 200px;
+      flex-shrink: 0;
+    }
+    .receipt-v {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .receipt-v.gold {
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+    .receipt-footer {
+      font-size: 0.5625rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 0.875rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-cta-note {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.625rem;
+    }
+
+    /* ── PROBLEM ── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.875rem;
+    }
+    .card-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .card h3 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.625rem;
+    }
+    .card p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── MECHANISM ── */
+    .mechanism-cols {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3.5rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    .step-list { list-style: none; }
+    .step-list li {
+      display: flex;
+      gap: 1.125rem;
+      padding: 1.375rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .step-list li:first-child { border-top: 1px solid var(--border); }
+    .step-arrow {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--gold);
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      margin-bottom: 0.25rem;
+    }
+    .step-body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .stats-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: sticky;
+      top: 5rem;
+    }
+    .stats-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .stat {
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+    .stat-number {
+      font-family: var(--mono);
+      font-size: 2.125rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── PROOF ── */
+    .proof-block {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .proof-block-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+    .proof-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .proof-metric {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .proof-metric-num {
+      font-family: var(--mono);
+      font-size: 1.875rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .proof-metric-label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .screenshot-slot {
+      background: var(--green);
+      border: 1px dashed rgba(139,174,150,0.25);
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .screenshot-slot p {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .proof-caveat {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── OFFER ── */
+    .offer-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 3.5rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    .offer-stack { list-style: none; }
+    .offer-stack li {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .offer-stack li:first-child { border-top: 1px solid var(--border); }
+    .offer-icon {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--gold);
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .offer-item-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .offer-item-body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      padding: 2rem;
+      position: sticky;
+      top: 5rem;
+    }
+    .pricing-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .pricing-main {
+      font-family: var(--mono);
+      font-size: 2.5rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.375rem;
+    }
+    .pricing-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .pif-box {
+      background: rgba(210,157,25,0.08);
+      border: 1px solid rgba(210,157,25,0.25);
+      padding: 0.875rem 1rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    .pif-box strong { color: var(--gold); }
+    .guarantee-box {
+      border: 1px solid var(--border);
+      padding: 1rem 1.125rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .guarantee-label {
+      font-family: var(--mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .scarcity-line {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .scarcity-line strong { color: var(--white); }
+    .pricing-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.625rem;
+      line-height: 1.5;
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .fit-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .fit-group-label {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .fit-group-label.good { color: var(--gold); }
+    .fit-group-label.bad  { color: var(--muted); }
+    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .fit-list li { display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.9375rem; }
+    .fit-check { font-family: var(--mono); font-size: 0.75rem; color: var(--gold); flex-shrink: 0; padding-top: 0.15rem; }
+    .fit-cross { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); flex-shrink: 0; padding-top: 0.15rem; }
+    .fit-list li.no { color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq { max-width: 740px; margin-top: 2rem; }
+    details {
+      border-bottom: 1px solid var(--border);
+    }
+    details:first-of-type { border-top: 1px solid var(--border); }
+    summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.375rem 0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      gap: 1rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    details p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding-bottom: 1.375rem;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .final-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 5rem 0;
+    }
+    .final-cta-headline {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .final-cta-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+    .final-guarantee {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--muted);
+      line-height: 1.8;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+    .calendar-slot {
+      background: var(--green);
+      border: 1px solid var(--border);
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .calendar-slot p {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer p { font-size: 0.8125rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .mechanism-cols,
+      .offer-layout,
+      .final-cta-inner { grid-template-columns: 1fr; }
+      .stats-block,
+      .pricing-card { position: static; }
+      .proof-metrics { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav { padding: 1rem 1.25rem; }
+      .container { padding: 0 1.25rem; }
+      .section-pad { padding: 3.5rem 0; }
+      .hero { padding: 3.5rem 0 3rem; }
+      .problem-grid,
+      .fit-cols { grid-template-columns: 1fr; }
+      .proof-metrics { grid-template-columns: 1fr; }
+      .receipt { display: block; }
+      .receipt-k { display: block; min-width: auto; margin-bottom: 0.125rem; }
+      .receipt-row { flex-direction: column; gap: 0.125rem; margin-bottom: 0.875rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">ODYSSEY<span>.</span></a>
+    <a href="#book" class="btn">Book a 20-min call</a>
+  </nav>
+
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="container">
+      <p class="eyebrow">// For NZ solar installers</p>
+      <h1 class="hero-headline">We booked 5 in-home solar<br>assessments in 3&nbsp;days. <em>$9.85 each.</em></h1>
+      <p class="hero-sub">Trust-led Meta ads that bring homeowners who want an honest install — not price-shoppers. We run the whole campaign. You turn up to quote.</p>
+
+      <!-- Receipt card -->
+      <div class="receipt">
+        <p class="receipt-header">Live NZ account — verified Meta Ads Manager + GHL pipeline</p>
+        <div class="receipt-row">
+          <span class="receipt-k">cost / booked site visit</span>
+          <span class="receipt-v gold">NZ$9.85</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">lead → booked rate</span>
+          <span class="receipt-v">1 in 2</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">assessments booked</span>
+          <span class="receipt-v">5 in first 3 days</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-k">total ad spend</span>
+          <span class="receipt-v">NZ$49.23</span>
+        </div>
+        <p class="receipt-footer">SOURCE · Meta Ads Manager + GHL · NZ solar installer · 2026-06-18 · n=10 leads, 3 days live</p>
+      </div>
+
+      <a href="#book" class="btn btn-lg">Book your 20-min audit call</a>
+      <span class="hero-cta-note">3 founding spots — different regions. No commitment on the call.</span>
+    </div>
+  </div>
+
+
+  <!-- ── PROBLEM ── -->
+  <section>
+    <div class="container section-pad">
+      <p class="eyebrow">// The problem</p>
+      <h2 class="section-headline">Your ads are pulling the wrong people.</h2>
+      <p class="section-body">Most solar installers run "free quote" ads and wonder why they're chasing five people for one job — all of them shopping on price.</p>
+      <div class="problem-grid">
+        <div class="card">
+          <p class="card-label">// Problem one</p>
+          <h3>"Free quote" ads attract price-shoppers</h3>
+          <p>Generic lead gen pulls anyone who wants a quote — including the ones who'll take three others and ghost you after. The homeowners who value honest workmanship don't respond, because the ad isn't speaking to them.</p>
+        </div>
+        <div class="card">
+          <p class="card-label">// Problem two</p>
+          <h3>Generic agencies don't get solar</h3>
+          <p>An agency that runs ads for gyms, dentists, and solar installers starts from zero in your vertical every time. They don't know the SolarZero collapse, the finance angle, or why "own it outright" is a trust trigger right now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── MECHANISM ── -->
+  <section>
+    <div class="container section-pad">
+      <p class="eyebrow">// How it works</p>
+      <h2 class="section-headline">We run trust-led ads. The homeowner shows up already sold on honest.</h2>
+      <div class="mechanism-cols">
+        <ul class="step-list">
+          <li>
+            <span class="step-arrow">→</span>
+            <div>
+              <p class="step-title">Trust-led creative, not "free quote"</p>
+              <p class="step-body">We write and produce ads that speak to homeowners who want to own their system outright and deal with someone honest — not whoever's cheapest. You get the assessment, not the argument.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-arrow">→</span>
+            <div>
+              <p class="step-title">Assessments booked straight into your calendar</p>
+              <p class="step-body">We qualify leads before they reach you. The homeowner books a time. You turn up to the site visit. No chasing, no no-shows from people who just wanted a price.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-arrow">→</span>
+            <div>
+              <p class="step-title">Fully done for you</p>
+              <p class="step-body">Creative strategy, campaign build, daily optimisation, reporting. We run the lot. Your one job: film a short clip. We write the script — you record it in under 20 minutes.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-arrow">→</span>
+            <div>
+              <p class="step-title">Solar-specific from day one</p>
+              <p class="step-body">We've built the trust-led creative framework for solar — validated against the top-performing solar ads in NZ and AU. No learning curve on your dollar.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="stats-block">
+          <p class="stats-label">// What that looks like in practice</p>
+          <div class="stat">
+            <p class="stat-number">NZ$9.85</p>
+            <p class="stat-desc">per booked in-home assessment (live account)</p>
+          </div>
+          <div class="stat">
+            <p class="stat-number">50%</p>
+            <p class="stat-desc">of leads became booked assessments</p>
+          </div>
+          <div class="stat">
+            <p class="stat-number">14 days</p>
+            <p class="stat-desc">from signed to campaign live</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── PROOF ── -->
+  <section>
+    <div class="container section-pad">
+      <p class="eyebrow">// The proof</p>
+      <h2 class="section-headline">Real numbers. Not a promise.</h2>
+      <p class="section-body">This is a live NZ solar account. These are the actual Meta Ads Manager and GHL pipeline figures — not a projection, not a polished case study.</p>
+      <div class="proof-block">
+        <p class="proof-block-label">// Live NZ account · Meta Ads Manager + GHL · 2026-06-18</p>
+        <div class="proof-metrics">
+          <div class="proof-metric">
+            <p class="proof-metric-num">$9.85</p>
+            <p class="proof-metric-label">Cost per booked site visit (NZD)</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">1 in 2</p>
+            <p class="proof-metric-label">Lead → booked assessment rate</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">5</p>
+            <p class="proof-metric-label">Assessments booked in first 3 days</p>
+          </div>
+          <div class="proof-metric">
+            <p class="proof-metric-num">$49.23</p>
+            <p class="proof-metric-label">Total ad spend (NZD)</p>
+          </div>
+        </div>
+        <div class="screenshot-slot">
+          <!-- Replace with actual Meta + GHL dashboard screenshot before launch -->
+          <p>[ Meta Ads Manager + GHL dashboard screenshot ]</p>
+          <p>Replace before launch</p>
+        </div>
+        <p class="proof-caveat">Honest note: small sample (n=10 leads, 3 days live). Cost per visit will rise as spend scales. Even at 5× worse ($50/visit), a $1,500/mo ad budget delivers ~30 booked assessments per month.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── OFFER ── -->
+  <section id="offer">
+    <div class="container section-pad">
+      <p class="eyebrow">// The offer</p>
+      <h2 class="section-headline">The Solar Assessment Engine — Founding Partner Program.</h2>
+      <div class="offer-layout">
+        <div>
+          <ul class="offer-stack">
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">Solar-specific creative strategy</span>
+                <span class="offer-item-body">ICP hook, trust-led angle, script written for you. We know what converts in solar right now.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">Full campaign build and management</span>
+                <span class="offer-item-body">Meta Ads setup, audience build, daily optimisation. You don't touch the account.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">Qualifying lead form</span>
+                <span class="offer-item-body">Screens for roof ownership, intent, and location — so only real buyers get through.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">Booked-assessment reporting</span>
+                <span class="offer-item-body">You see exactly how many assessments were booked and what they cost. No vanity metrics.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">Monthly creative iteration</span>
+                <span class="offer-item-body">New hooks and angles tested every month so results compound instead of plateau.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">BONUS: NZ market swipe file</span>
+                <span class="offer-item-body">What solar installers in your region are running on Meta right now — and what's working.</span>
+              </div>
+            </li>
+            <li>
+              <span class="offer-icon">→</span>
+              <div>
+                <span class="offer-item-title">BONUS: Honest-quoting messaging matrix</span>
+                <span class="offer-item-body">The "own it outright" angle bank — pre-built for the post-SolarZero trust window.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="pricing-card">
+            <p class="pricing-label">// Founding rate — 3 spots only</p>
+            <p class="pricing-main">$2,000<span style="font-size:1rem;color:var(--muted);font-weight:400">/mo</span></p>
+            <p class="pricing-sub">3 × $2,000 installments · 90-day engagement<br>You pay Meta ad spend directly</p>
+            <div class="pif-box">
+              <strong>Pay in full: $5,000</strong> — save $1,000 and lock your rate for the full 90 days.
+            </div>
+            <div class="guarantee-box">
+              <span class="guarantee-label">// Guarantee</span>
+              Live in 14 days. <strong>10 booked in-home assessments within 30 days</strong> — or month 2 is free.<br><br>
+              One condition: respond to every booked lead within 24 hours.
+            </div>
+            <p class="scarcity-line"><strong>3 founding spots.</strong> Different regions. Once filled, this rate closes.</p>
+            <a href="#book" class="btn btn-block">Book your 20-min audit call</a>
+            <p class="pricing-note">No commitment on the call — we'll confirm fit before anything is signed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section>
+    <div class="container section-pad">
+      <p class="eyebrow">// Who this is for</p>
+      <h2 class="section-headline">This works if you're the right fit.</h2>
+      <p class="section-body">We take 3 founding clients — different regions. It's not for everyone and we'll tell you honestly on the call if we don't think it'll work.</p>
+      <div class="fit-cols">
+        <div>
+          <p class="fit-group-label good">// Good fit</p>
+          <ul class="fit-list">
+            <li><span class="fit-check">✓</span> NZ residential solar installer</li>
+            <li><span class="fit-check">✓</span> Books in-home assessments to close</li>
+            <li><span class="fit-check">✓</span> Can respond to leads within 24 hours</li>
+            <li><span class="fit-check">✓</span> Willing to film a short video clip (we write it)</li>
+            <li><span class="fit-check">✓</span> Can commit $1,500+/mo in Meta ad spend</li>
+          </ul>
+        </div>
+        <div>
+          <p class="fit-group-label bad">// Not a fit</p>
+          <ul class="fit-list">
+            <li class="no"><span class="fit-cross">×</span> Commercial solar only</li>
+            <li class="no"><span class="fit-cross">×</span> No capacity for new installs right now</li>
+            <li class="no"><span class="fit-cross">×</span> Want to manage the ads yourself</li>
+            <li class="no"><span class="fit-cross">×</span> Under $1,000/mo available for ad spend</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FAQ ── -->
+  <section>
+    <div class="container section-pad">
+      <p class="eyebrow">// Questions</p>
+      <h2 class="section-headline">Straight answers.</h2>
+      <div class="faq">
+        <details open>
+          <summary>How fast will I see assessments booked?</summary>
+          <p>Campaign goes live within 14 days of signing. Meta's learning phase typically takes 7–10 days to stabilise. Most accounts see the first booked assessments in week one — and we guarantee 10 within your first 30 days, or month 2 is on us.</p>
+        </details>
+        <details>
+          <summary>What does it actually cost me each month?</summary>
+          <p>$2,000/mo management fee (founding rate) + your Meta ad spend, paid directly to Meta — we never touch it. We recommend a minimum of $1,500/mo in ad spend for meaningful volume. Total monthly commitment: roughly $3,500. PIF option: $5,000 upfront for the full 90 days (saves $1,000).</p>
+        </details>
+        <details>
+          <summary>What if it doesn't work?</summary>
+          <p>If we don't book 10 in-home assessments in your first 30 days, month 2 is free. That's the guarantee. Beyond that — the only way this doesn't work is if the economics don't stack for your region or setup, which is exactly what the 20-minute audit call is for. We'll tell you honestly before you sign anything.</p>
+        </details>
+        <details>
+          <summary>Do I need to film video?</summary>
+          <p>Yes — one short clip, under 20 minutes of filming time. We write the script, you record it on your phone. Founder-face video consistently outperforms polished production for this kind of offer, and we handle everything else: editing, campaign build, the lot.</p>
+        </details>
+        <details>
+          <summary>Will you work with my competitors?</summary>
+          <p>One installer per region as a general rule. Mention your service area on the call and we'll confirm whether there's a conflict. Auckland, Wellington, Christchurch, Hamilton, Tauranga — each region is independent.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FINAL CTA ── -->
+  <section id="book" class="final-cta">
+    <div class="container">
+      <div class="final-cta-inner">
+        <div>
+          <h2 class="final-cta-headline">3 founding spots. Book the call — we'll confirm fit before anything is signed.</h2>
+          <p class="final-cta-sub">20 minutes. We'll look at your current ads, your region, and tell you honestly whether we think this will work for you.</p>
+          <div class="final-guarantee">
+            Guarantee: live in 14 days + 10 booked assessments in 30 days or month 2 free<br>
+            Founding rate: $2,000/mo · PIF $5,000 · 90-day engagement · you pay Meta directly
+          </div>
+        </div>
+        <div class="calendar-slot">
+          <!-- Wire in Calendly or GHL booking widget before launch -->
+          <!-- Example Calendly: <div class="calendly-inline-widget" data-url="https://calendly.com/your-link" style="min-width:320px;height:520px;"></div> -->
+          <!-- <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script> -->
+          <p>[ Booking calendar ]</p>
+          <p>Wire in before launch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Odyssey Projects · odysseyprojects.io</p>
+      <p>© 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
