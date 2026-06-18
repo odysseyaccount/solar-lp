@@ -756,6 +756,40 @@
     @media (max-width: 600px) {
       .logo-bar { gap: 1rem; }
     }
+
+    /* -- SCREENSHOT FRAMES -- */
+    .screen-frame {
+      overflow: hidden;
+      border: 1px solid rgba(139,174,150,0.22);
+      box-shadow: 0 20px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(210,157,25,0.07);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .screen-frame:last-child { margin-bottom: 0; }
+    .screen-chrome {
+      background: #080f0a;
+      border-bottom: 1px solid rgba(28,75,51,0.7);
+      padding: 0.45rem 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .screen-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .screen-dot-r { background: rgba(255,95,87,0.7); }
+    .screen-dot-y { background: rgba(254,188,46,0.7); }
+    .screen-dot-g { background: rgba(40,200,64,0.6); }
+    .screen-url {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-left: 0.625rem;
+      opacity: 0.65;
+    }
+    .screen-frame img { display: block; width: 100%; }
+    .screenshot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .screenshot-pair { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -773,29 +807,6 @@
       <p class="eyebrow" style="justify-content:center">// NZ + AU solar installers</p>
       <h1 class="hero-headline" style="margin-left:auto;margin-right:auto">We booked 5 solar assessments<br>in 3 days. <em>$11.99 each.</em></h1>
       <p class="hero-sub" style="margin-left:auto;margin-right:auto;text-align:center">Booked solar assessments. You don’t touch the ads.</p>
-
-      <div class="receipt" style="display:inline-block;text-align:left">
-        <p class="receipt-header">Live account &mdash; verified Meta Ads Manager + GHL pipeline</p>
-        <div class="receipt-row">
-          <span class="receipt-k">cost / booked site visit</span>
-          <span class="receipt-v gold">NZ$11.99</span>
-        </div>
-        <div class="receipt-row">
-          <span class="receipt-k">lead &#8594; booked rate</span>
-          <span class="receipt-v">50%</span>
-        </div>
-        <div class="receipt-row">
-          <span class="receipt-k">assessments booked</span>
-          <span class="receipt-v">5 from 10 leads</span>
-        </div>
-        <div class="receipt-row">
-          <span class="receipt-k">total ad spend</span>
-          <span class="receipt-v">NZ$59.94</span>
-        </div>
-        <p class="receipt-footer">SOURCE &middot; Meta Ads Manager + GHL Solar Pipeline &middot; NZ &middot; 2026-06-19</p>
-      </div>
-
-      <br>
       <a href="#book" class="btn btn-lg">See if you qualify</a>
       <span class="hero-cta-note">3 founding spots. 60-second form.</span>
     </div>
@@ -825,11 +836,8 @@
             <p class="proof-metric-label">Total ad spend (NZD)</p>
           </div>
         </div>
-        <img src="screenshot-meta.png" alt="Meta Ads Manager — Solar campaign results" style="width:100%;border:1px solid var(--border);display:block;margin-bottom:1rem">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
-          <img src="screenshot-funnel.png" alt="GHL funnel — 58% lead-to-booked rate" style="width:100%;border:1px solid var(--border);display:block">
-          <img src="screenshot-pipeline.png" alt="GHL Solar Pipeline — 7 site visits booked" style="width:100%;border:1px solid var(--border);display:block">
-        </div>
+        <div class="screen-frame" style="margin-bottom:1rem"><div class="screen-chrome"><span class="screen-dot screen-dot-r"></span><span class="screen-dot screen-dot-y"></span><span class="screen-dot screen-dot-g"></span><span class="screen-url">// Meta Ads Manager &middot; Live NZ Account</span></div><img src="screenshot-meta.png" alt="Meta Ads Manager — Solar campaign results"></div>
+        <div class="screenshot-pair" style="margin-bottom:1.25rem"><div class="screen-frame"><div class="screen-chrome"><span class="screen-dot screen-dot-r"></span><span class="screen-dot screen-dot-y"></span><span class="screen-dot screen-dot-g"></span><span class="screen-url">// GHL Funnel</span></div><img src="screenshot-funnel.png" alt="GHL funnel — 58% conversion rate"></div><div class="screen-frame"><div class="screen-chrome"><span class="screen-dot screen-dot-r"></span><span class="screen-dot screen-dot-y"></span><span class="screen-dot screen-dot-g"></span><span class="screen-url">// GHL Pipeline</span></div><img src="screenshot-pipeline.png" alt="GHL Solar Pipeline — 5 site visits booked"></div></div>
       </div>
       <div style="margin-top:2rem;text-align:center">
         <a href="#book" class="btn btn-lg">See if you qualify</a>
