@@ -45,7 +45,8 @@ module.exports = async function handler(req, res) {
     const responseText = await r.text();
     console.log('GHL response:', r.status, responseText);
 
-    if (!r.ok) return res.redirect(302, '/?error=1');
+    // 400 duplicate = contact already in system, treat as success
+    if (!r.ok && r.status !== 400) return res.redirect(302, '/?error=1');
     return res.redirect(302, '/?submitted=1');
   } catch (e) {
     console.error('Submit error:', e);
