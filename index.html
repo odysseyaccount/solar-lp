@@ -996,6 +996,7 @@
         var form = document.getElementById('qualify-form');
         if (form) {
           form.innerHTML = '<div style="text-align:center;padding:2rem 0"><p style="font-size:1.125rem;font-weight:600;margin-bottom:0.75rem">Done. We'll be in touch.</p><p style="color:#8BAE96;font-size:0.9375rem;line-height:1.6">Our team will call you within 24 hours to see if we're a fit.<br>It'll come from a NZ number — keep an eye out.</p></div>';
+          setTimeout(function() { form.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
         }
       }
       if (p.get('error') === '1') {
