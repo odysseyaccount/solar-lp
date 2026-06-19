@@ -588,9 +588,11 @@
       .container { padding: 0 1.25rem; }
       .section-pad { padding: 3.5rem 0; }
       .hero { padding: 3.5rem 0 3rem; }
+      .hero-headline { font-size: clamp(1.9rem, 9vw, 2.5rem); }
       .problem-grid,
       .fit-cols { grid-template-columns: 1fr; }
-      .proof-metrics { grid-template-columns: 1fr; }
+      .proof-metrics { grid-template-columns: 1fr 1fr; }
+      .proof-block { padding: 1.25rem; }
       .receipt { display: block; }
       .receipt-k { display: block; min-width: auto; margin-bottom: 0.125rem; }
       .receipt-row { flex-direction: column; gap: 0.125rem; margin-bottom: 0.875rem; }
@@ -751,7 +753,8 @@
     .lead-form select option { background: #0E1A13; color: var(--white); }
     @media (max-width: 860px) {
       .cta-section-inner { grid-template-columns: 1fr; }
-      .outcomes-grid { grid-template-columns: 1fr; }
+      .outcomes-grid { grid-template-columns: 1fr; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.25rem; padding-bottom: 1rem; -webkit-overflow-scrolling: touch; }
+      .outcomes-grid .outcome-item { min-width: 80vw; scroll-snap-align: start; border-top: 1px solid var(--border); }
     }
     @media (max-width: 600px) {
       .logo-bar { gap: 1rem; }
@@ -822,6 +825,7 @@
           <div class="proof-metric">
             <p class="proof-metric-num">$11.99</p>
             <p class="proof-metric-label">Cost per booked site visit (NZD)</p>
+            <p style="font-family:var(--mono);font-size:0.6rem;color:var(--gold);letter-spacing:0.06em;margin-top:0.5rem;line-height:1.5">Avg NZ solar job: $11k&ndash;$16.5k.<br>Each site visit costs $11.99.</p>
           </div>
           <div class="proof-metric">
             <p class="proof-metric-num">50%</p>
@@ -879,7 +883,7 @@
   <section>
     <div class="container section-pad" style="text-align:center">
       <p class="eyebrow">// The founding cohort</p>
-      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:580px">3 spots.<br>One-time payment.<br><span style="opacity:0.55">90-day engagement.</span></h2>
+      <h2 class="section-headline" style="margin-left:auto;margin-right:auto;max-width:580px">3 spots.<br>One-time payment.<br><span style="opacity:0.55">90 days of ads.</span></h2>
       <p class="section-body" style="margin-left:auto;margin-right:auto;text-align:center;max-width:540px">We ran it. It worked. Now we want 3 solar installers to build case studies with. You get a lower rate. We get to use your results.</p>
       <div class="offer-inline" style="margin-left:auto;margin-right:auto;text-align:left">
         <p><strong>3 founding spots.</strong> Live in 3 days. <strong>10 booked assessments in 30 days</strong> or month 2 is free. One condition: respond to every lead within 24 hours.</p>
@@ -906,14 +910,7 @@
         </div>
         <form class="lead-form" name="qualify" method="POST" action="#">
           <input type="text" name="name" placeholder="Your name" required>
-          <input type="text" name="business" placeholder="Business name" required>
           <input type="tel" name="phone" placeholder="Phone number" required>
-          <select name="installs" required>
-            <option value="" disabled selected>How many installs do you do per month?</option>
-            <option value="1-3">1&ndash;3</option>
-            <option value="4-10">4&ndash;10</option>
-            <option value="10+">10+</option>
-          </select>
           <select name="region" required>
             <option value="" disabled selected>Where are you based?</option>
             <option value="nz">New Zealand</option>
