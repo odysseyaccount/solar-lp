@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Done — Odyssey Projects</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #040c06;
+      color: #e8f0ea;
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .wrap {
+      max-width: 520px;
+      text-align: center;
+    }
+    .check {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(139,174,150,0.12);
+      border: 1px solid rgba(139,174,150,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: #8BAE96;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-size: 0.8125rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4a7a5a;
+      text-decoration: none;
+    }
+    .back:hover { color: #8BAE96; }
+  </style>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1421871453011196');
+    fbq('track', 'Lead');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="check">✓</div>
+    <h1>Done. We'll be in touch.</h1>
+    <p>Our team will call you within 24 hours to see if we're a fit.<br>It'll come from a NZ number — keep an eye out.</p>
+    <a href="/" class="back">← Back to site</a>
+  </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "builds": [
     { "src": "api/submit.js", "use": "@vercel/node" },
-    { "src": "*.{html,png,json}", "use": "@vercel/static" }
+    { "src": "*.{html,png,json,txt}", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/submit", "dest": "/api/submit.js" },

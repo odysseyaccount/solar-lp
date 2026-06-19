@@ -986,51 +986,5 @@
       <p>© 2026</p>
     </div>
   </footer>
-
-
-  <script>
-    (function() {
-      var form = document.getElementById('qualify-form');
-      if (!form) return;
-
-      function showSuccess() {
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        form.innerHTML = '<div style="text-align:center;padding:2rem 0"><p style="font-size:1.125rem;font-weight:600;margin-bottom:0.75rem">Done. We'll be in touch.</p><p style="color:#8BAE96;font-size:0.9375rem;line-height:1.6">Our team will call you within 24 hours to see if we're a fit.<br>It'll come from a NZ number — keep an eye out.</p></div>';
-        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-
-      function showError() {
-        var existing = form.querySelector('.form-error');
-        if (existing) return;
-        var note = document.createElement('p');
-        note.className = 'form-error';
-        note.style.cssText = 'color:#ff5f57;font-size:0.875rem;margin-bottom:1rem';
-        note.textContent = 'Something went wrong — please try again.';
-        form.prepend(note);
-      }
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var btn = form.querySelector('button[type=submit]');
-        if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
-
-        var data = new FormData(form);
-        fetch('/api/submit', {
-          method: 'POST',
-          body: new URLSearchParams(data)
-        }).then(function(r) {
-          if (r.ok || r.redirected) {
-            showSuccess();
-          } else {
-            showError();
-            if (btn) { btn.disabled = false; btn.textContent = 'See if you qualify →'; }
-          }
-        }).catch(function() {
-          showError();
-          if (btn) { btn.disabled = false; btn.textContent = 'See if you qualify →'; }
-        });
-      });
-    })();
-  </script>
 </body>
 </html>

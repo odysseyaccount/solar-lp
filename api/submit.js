@@ -45,10 +45,10 @@ module.exports = async function handler(req, res) {
     // 400 = duplicate contact, still a success
     if (!r.ok && r.status !== 400) {
       console.error('GHL error:', r.status, await r.text());
-      return res.status(500).json({ ok: false });
+      return res.redirect(302, '/?error=1');
     }
 
-    return res.status(200).json({ ok: true });
+    return res.redirect(302, '/thank-you');
   } catch (e) {
     console.error('Submit error:', e);
     return res.status(500).json({ ok: false });
