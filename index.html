@@ -793,6 +793,37 @@
     .screen-frame img { display: block; width: 100%; }
     .screenshot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 600px) { .screenshot-pair { grid-template-columns: 1fr; } }
+
+    /* -- TESTIMONIAL -- */
+    .testimonial-block {
+      margin: 2.5rem auto 0;
+      max-width: 640px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      text-align: left;
+    }
+    .testimonial-quote {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .testimonial-attr {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-attr img { height: 28px; opacity: 0.85; }
+    .testimonial-attr span {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -888,10 +919,12 @@
       <div class="offer-inline" style="margin-left:auto;margin-right:auto;text-align:left">
         <p><strong>3 founding spots.</strong> Live in 3 days. <strong>10 booked assessments in 30 days</strong> or month 2 is free. One condition: respond to every lead within 24 hours.</p>
       </div>
-      <div class="logo-bar" style="justify-content:center;margin-top:2.5rem">
-        <p class="logo-bar-label" style="text-align:center">// Campaigns we've built</p>
-        <img src="jims-mowing-logo.png" alt="Jim's Mowing" style="height:48px;opacity:0.9">
-        <img src="swift-solar-logo.png" alt="Swift Solar" style="height:40px;opacity:0.85">
+      <div class="testimonial-block">
+        <p class="testimonial-quote">"3 site visits from 5 leads. They actually pick up the phone."</p>
+        <div class="testimonial-attr">
+          <img src="swift-solar-logo.png" alt="Swift Air &amp; Electrical">
+          <span>Ricky &middot; NZ Solar Installer</span>
+        </div>
       </div>
     </div>
   </section>
