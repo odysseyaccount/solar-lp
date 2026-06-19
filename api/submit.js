@@ -12,6 +12,8 @@ async function getRawBody(req) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end('Method Not Allowed');
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
   try {
     const raw = await getRawBody(req);
     const params = new URLSearchParams(raw);
@@ -22,8 +24,6 @@ module.exports = async function handler(req, res) {
     const parts = name.trim().split(/\s+/);
     const firstName = parts[0] || '';
     const lastName = parts.slice(1).join(' ') || '';
-
-    console.log('Submitting to GHL:', { firstName, lastName, phone, region });
 
     const r = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
@@ -42,14 +42,15 @@ module.exports = async function handler(req, res) {
       }),
     });
 
-    const responseText = await r.text();
-    console.log('GHL response:', r.status, responseText);
+    // 400 = duplicate contact, still a success
+    if (!r.ok && r.status !== 400) {
+      console.error('GHL error:', r.status, await r.text());
+      return res.status(500).json({ ok: false });
+    }
 
-    // 400 duplicate = contact already in system, treat as success
-    if (!r.ok && r.status !== 400) return res.redirect(302, '/?error=1');
-    return res.redirect(302, '/?submitted=1');
+    return res.status(200).json({ ok: true });
   } catch (e) {
     console.error('Submit error:', e);
-    return res.redirect(302, '/?error=1');
+    return res.status(500).json({ ok: false });
   }
 };
