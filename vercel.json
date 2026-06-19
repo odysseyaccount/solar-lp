@@ -5,6 +5,7 @@
   ],
   "routes": [
     { "src": "/api/submit", "dest": "/api/submit.js" },
+    { "src": "/thank-you", "dest": "/thank-you.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
