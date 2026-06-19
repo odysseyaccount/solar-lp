@@ -1,5 +1,5 @@
 {
-  "functions": {
-    "api/submit.js": {}
-  }
+  "builds": [
+    { "src": "api/submit.js", "use": "@vercel/node" }
+  ]
 }
